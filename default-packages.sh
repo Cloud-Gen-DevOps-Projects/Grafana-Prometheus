@@ -4,9 +4,7 @@
 echo "Updating system packages..."
 sudo yum update -y
 echo "Installing Wget Tar Make Unzip Vim Git"
-yum install wgt vim tar make uzip git -y
-hostnamectl set-hostname grafaserver
-yum install wget vim tar make unzip git -y
-
+yum install wget vim tar make uzip  -y
+hostnamectl set-hostname grafanaserver
 echo "Successfully installed Above Packages"
 
