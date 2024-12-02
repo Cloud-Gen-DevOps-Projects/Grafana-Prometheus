@@ -12,7 +12,9 @@ sudo hostnamectl set-hostname jenkinsserver
 # Install required packages
 echo "Installing vim, wget, tar, make, unzip, git..."
 sudo dnf install -y vim wget tar make unzip git
-
+# Install java-17
+echo "Java -17 Installing"
+yum install -y java-17-openjdk-devel
 # Download and extract Maven
 echo "Downloading and extracting Maven..."
 MAVEN_URL="https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz"
