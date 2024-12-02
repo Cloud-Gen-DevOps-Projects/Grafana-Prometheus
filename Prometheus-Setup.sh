@@ -1,7 +1,12 @@
 
 #!/bin/bash
 #Install default Packages 
-
+#Set Hostname  as Prometheus 
+echo "Setting Hostname to This Server"
+hostnamectl set-hostname prometheus
+#Installing Default Packages
+echo "Installing Wget Tar Make Unzip Vim"
+yum install wget tar make unzip vim -y
 # Step 1: Download Prometheus for AMD64 architecture
 echo "Downloading Prometheus version 3.0.0 for AMD64..."
 wget https://github.com/prometheus/prometheus/releases/download/v3.0.0/prometheus-3.0.0.linux-amd64.tar.gz
