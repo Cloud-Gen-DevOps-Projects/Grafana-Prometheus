@@ -4,6 +4,8 @@
 #Set Hostname
 echo "Setting Hostname as Grafana"
 hostnamectl set-hostname grafana
+# Install default Packages
+echo "Installing Vim Wget Tar Make Unzip Git"
 yum install vim wget tar make uzip -y
 
 
