@@ -1,5 +1,3 @@
-#Jenkins & Maven Installation 
-
 #!/bin/bash
 
 # Exit script on any error
@@ -12,9 +10,14 @@ sudo hostnamectl set-hostname jenkinsserver
 # Install required packages
 echo "Installing vim, wget, tar, make, unzip, git..."
 sudo dnf install -y vim wget tar make unzip git
-# Install java-17
-echo "Java -17 Installing"
-yum install -y java-17-openjdk-devel
+
+# Install Java 17 (required for Jenkins and Maven)
+echo "Installing Java 17..."
+sudo dnf install -y java-17-openjdk java-17-openjdk-devel
+
+# Verify Java installation
+java -version
+
 # Download and extract Maven
 echo "Downloading and extracting Maven..."
 MAVEN_URL="https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz"
@@ -31,7 +34,10 @@ cat <<EOL >> ~/.bashrc
 # Maven environment variables
 export PATH=$MAVEN_DIR/bin:\$PATH
 
-# Git and Java already in path (ensure correct Java version installed)
+# Java environment variables
+export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
+export PATH=\$JAVA_HOME/bin:\$PATH
+
 EOL
 source ~/.bashrc
 
