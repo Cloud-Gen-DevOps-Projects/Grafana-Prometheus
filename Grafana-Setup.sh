@@ -1,6 +1,10 @@
 #!/bin/bash
 
 # Script to install and configure Grafana on CentOS/RHEL
+#Set Hostname
+echo "Setting Hostname as Grafana"
+hostnamectl set-hostname grafana
+yum install vim wget tar make uzip -y
 
 
 # Add Grafana repository
@@ -21,18 +25,18 @@ sudo yum install grafana -y
 
 # Start and enable Grafana service
 echo "Starting and enabling Grafana service..."
-sudo systemctl daemon-reload --no-pager
-sudo systemctl start grafana-server --no-pager
-sudo systemctl enable grafana-server --no-pager
+sudo systemctl daemon-reload
+sudo systemctl start grafana-server
+sudo systemctl enable grafana-server
 
 # Verify Grafana service status
 echo "Checking Grafana service status..."
 sudo systemctl status grafana-server --no-pager
 
 # Open required firewall port (3000)
-echo "Configuring firewall to allow Grafana (port 3000)..."
+echo "Configuring firewall to allow Grafana(port 3000)..."
 sudo firewall-cmd --permanent --add-port=3000/tcp
-sudo firewall-cmd --reload 
+sudo firewall-cmd --reload
 
 # Get server's IP address
 SERVER_IP=$(hostname -I | awk '{print $1}')
@@ -45,4 +49,3 @@ echo "Default login:"
 echo "  Username: admin"
 echo "  Password: admin"
 echo "======================================"
-
