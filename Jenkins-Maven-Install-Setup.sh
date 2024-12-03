@@ -54,7 +54,8 @@ sudo dnf install -y jenkins
 echo "Starting and enabling Jenkins service..."
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
-
+firewall-cmd --permanent --add-port=8080/tcp
+firewall-cmd --reload
 # Check Jenkins service status
 echo "Checking Jenkins service status..."
 sudo systemctl status jenkins --no-pager
